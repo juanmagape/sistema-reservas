@@ -1,7 +1,6 @@
 package Vista;
-import Controlador.GestorFicheros;
+import Controlador.Controlador;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -98,7 +97,7 @@ public class MenuVista {
         System.out.println("\nIntroduce el número de la reserva que deseas eliminar:");
         int reservaEliminar = sc.nextInt();
 
-        boolean borrado = GestorFicheros.eliminarReservas(reservaEliminar);
+        boolean borrado = Controlador.eliminarReservas(reservaEliminar);
 
         if (borrado) {
             System.out.println("Reserva eliminada correctamente.");

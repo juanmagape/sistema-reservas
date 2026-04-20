@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestorFicheros {
+public class Controlador {
 
     private static String RUTA_SALA = "src/Archivos/salas.txt";
     private static String RUTA_RESERVA = "src/Archivos/reservas.txt";
