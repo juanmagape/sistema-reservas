@@ -8,8 +8,8 @@ public class Reserva extends Sala {
     private int telefonoCliente;
     private int numJugadores;
 
-    public Reserva(int idReserva, String fechaReserva, String horaReserva, String nombreCliente, int telefonoCliente, int numJugadores) {
-        super();
+    public Reserva(int idSala, int idReserva, String fechaReserva, String horaReserva, String nombreCliente, int telefonoCliente, int numJugadores) {
+        super(idSala);
         this.idReserva = idReserva;
         this.fechaReserva = fechaReserva;
         this.horaReserva = horaReserva;
@@ -64,11 +64,6 @@ public class Reserva extends Sala {
 
     public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
-    }
-
-    @Override
-    public String toString() {
-        return "Reserva " + idReserva + ": | Fecha: " + fechaReserva + "| Hora: " + horaReserva + "| Nombre Cliente: " + nombreCliente + "| Telefono Cliente: " + telefonoCliente + "| Numero Jugadores: " + numJugadores;
     }
 }
 
