@@ -1,4 +1,6 @@
 package Vista;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MenuVista {
@@ -48,7 +50,7 @@ public class MenuVista {
         String nombreCliente = sc.next();
 
         System.out.println("\nIntroduce el teléfono del cliente:");
-        int  telefonoCliente = sc.nextInt();
+        int telefonoCliente = sc.nextInt();
 
         System.out.println("Introduce el número de jugadores:");
         int numJugadores = sc.nextInt();
@@ -58,5 +60,25 @@ public class MenuVista {
 
         System.out.println("Introduce la hora de la reserva (hh:mm):");
         String horaReserva = sc.next();
+    }
+
+    public static void VerReserva(File fichero) throws FileNotFoundException {
+        System.out.println("================================================");
+        System.out.println("===Sistema de reserva ScapeRoom - Ver reserva===");
+        System.out.println("================================================");
+
+        Scanner reader = new Scanner(fichero);
+        int i = 1;
+
+        if (!reader.hasNextLine()) {
+            System.out.println("No hay reservas registradas.");
+            return;
+        }
+
+        while (reader.hasNextLine()) {
+            String linea = reader.nextLine();
+            System.out.println("[" + i + "] - " + linea);
+            i++;
+        }
     }
 }
