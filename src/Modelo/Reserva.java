@@ -65,5 +65,18 @@ public class Reserva extends Sala {
     public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
     }
-}
+
+    @Override
+    public String toString() {
+        return "Reserva: " +
+                "ID Reserva: " + idReserva +
+                ", Fecha: " + fechaReserva +
+                ", Hora: " + horaReserva +
+                ", Cliente: " + nombreCliente +
+                ", Teléfono: " + telefonoCliente +
+                ", Jugadores: " + numJugadores +
+                ", Sala: " + getIdSala();
+        }
+    }
+
 
