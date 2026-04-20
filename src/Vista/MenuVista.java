@@ -1,6 +1,9 @@
 package Vista;
+import Controlador.GestorFicheros;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuVista {
@@ -62,49 +65,40 @@ public class MenuVista {
         String horaReserva = sc.next();
     }
 
-    public static void VerReserva(File fichero) throws FileNotFoundException {
+    public static void VerReserva(ArrayList<String> listaReservas) throws FileNotFoundException {
         System.out.println("================================================");
         System.out.println("===Sistema de reserva ScapeRoom - Ver reserva===");
         System.out.println("================================================");
 
-        Scanner reader = new Scanner(fichero);
         int i = 1;
-
-        if (!reader.hasNextLine()) {
+        if (listaReservas.isEmpty()) {
             System.out.println("No hay reservas registradas.");
             return;
         }
-
-        while (reader.hasNextLine()) {
-            String linea = reader.nextLine();
+        for (String linea : listaReservas) {
             System.out.println("[" + i + "] - " + linea);
             i++;
         }
     }
 
-    public static void EliminarReserva(File fichero) throws FileNotFoundException {
+    public static void EliminarReserva(ArrayList<String> listaReservas) throws FileNotFoundException {
         System.out.println("=====================================================");
         System.out.println("===Sistema de reserva ScapeRoom - Eliminar reserva===");
         System.out.println("=====================================================");
 
-        Scanner reader = new Scanner(fichero);
-        int i = 1;
-
-        if (!reader.hasNextLine()) {
+        if (listaReservas.isEmpty()) {
             System.out.println("No hay reservas registradas.");
             return;
         }
 
-        while (reader.hasNextLine()) {
-            String linea = reader.nextLine();
-            System.out.println("[" + i + "] - " + linea);
-            i++;
+        for (int i = 0; i < listaReservas.size(); i++) {
+            System.out.println("[" + (i + 1) + "] - " + listaReservas.get(i));
         }
 
         System.out.println("\nIntroduce el número de la reserva que deseas eliminar:");
         int reservaEliminar = sc.nextInt();
 
-        boolean borrado = Controlador.eliminarReservas(reservaEliminar);
+        boolean borrado = GestorFicheros.eliminarReservas(reservaEliminar);
 
         if (borrado) {
             System.out.println("Reserva eliminada correctamente.");
