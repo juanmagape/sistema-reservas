@@ -36,4 +36,27 @@ public class MenuVista {
             }
         }
     }
+
+    public static void AnadirReserva() {
+        System.out.println("================================================");
+        System.out.println("=Sistema de reservas ScapeRoom - Añadir reserva=");
+        System.out.println("================================================");
+
+        System.out.println("\nIntroduce el ID de la sala");
+
+        System.out.println("\nIntroduce el nombre del cliente:");
+        String nombreCliente = sc.next();
+
+        System.out.println("\nIntroduce el teléfono del cliente:");
+        int  telefonoCliente = sc.nextInt();
+
+        System.out.println("Introduce el número de jugadores:");
+        int numJugadores = sc.nextInt();
+
+        System.out.println("Introduce la fecha de la reserva (dd/mm/yyyy):");
+        String fechaReserva = sc.next();
+
+        System.out.println("Introduce la hora de la reserva (hh:mm):");
+        String horaReserva = sc.next();
+    }
 }

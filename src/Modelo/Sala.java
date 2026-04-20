@@ -15,6 +15,10 @@ public class Sala {
         this.precio = precio;
     }
 
+    public Sala(int idSala) {
+        this.idSala = idSala;
+    }
+
     public int getIdSala() {
         return idSala;
     }
