@@ -81,4 +81,35 @@ public class MenuVista {
             i++;
         }
     }
+
+    public static void EliminarReserva(File fichero) throws FileNotFoundException {
+        System.out.println("=====================================================");
+        System.out.println("===Sistema de reserva ScapeRoom - Eliminar reserva===");
+        System.out.println("=====================================================");
+
+        Scanner reader = new Scanner(fichero);
+        int i = 1;
+
+        if (!reader.hasNextLine()) {
+            System.out.println("No hay reservas registradas.");
+            return;
+        }
+
+        while (reader.hasNextLine()) {
+            String linea = reader.nextLine();
+            System.out.println("[" + i + "] - " + linea);
+            i++;
+        }
+
+        System.out.println("\nIntroduce el número de la reserva que deseas eliminar:");
+        int reservaEliminar = sc.nextInt();
+
+        boolean borrado = Controlador.eliminarReservas(reservaEliminar);
+
+        if (borrado) {
+            System.out.println("Reserva eliminada correctamente.");
+        } else {
+            System.out.println("No se pudo eliminar la reserva. Verifica el número ingresado.");
+        }
+    }
 }
