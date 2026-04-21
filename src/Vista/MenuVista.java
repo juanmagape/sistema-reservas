@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class MenuVista {
     public static Scanner sc = new Scanner(System.in);
 
-    public static void Menu() {
+    public static void Menu() throws FileNotFoundException {
         while (true) {
             System.out.println("================================================");
             System.out.println("=Sistema de reservas ScapeRoom - Menú principal=");
@@ -23,13 +23,13 @@ public class MenuVista {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Has seleccionado: Crear reserva");
+                    AnadirReserva();
                     break;
                 case 2:
-                    System.out.println("Has seleccionado: Ver reservas");
+                    VerReserva(Controlador.obtenerLineasReserva());
                     break;
                 case 3:
-                    System.out.println("Has seleccionado: Eliminar reserva");
+                    EliminarReserva(Controlador.obtenerLineasReserva());
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");
@@ -47,6 +47,7 @@ public class MenuVista {
         System.out.println("================================================");
 
         System.out.println("\nIntroduce el ID de la sala");
+        int idSala = sc.nextInt();
 
         System.out.println("\nIntroduce el nombre del cliente:");
         String nombreCliente = sc.next();
@@ -62,6 +63,14 @@ public class MenuVista {
 
         System.out.println("Introduce la hora de la reserva (hh:mm):");
         String horaReserva = sc.next();
+
+        int idReserva = Controlador.obtenerLineasReserva().size() + 1;
+
+        Modelo.Reserva nuevaReserva = new Modelo.Reserva(idSala, idReserva, fechaReserva, horaReserva, nombreCliente, telefonoCliente, numJugadores);
+
+        Controlador.guardarReserva(nuevaReserva.toString());
+
+        System.out.println("¡Reserva guardada con éxito!");
     }
 
     public static void VerReserva(ArrayList<String> listaReservas) throws FileNotFoundException {
