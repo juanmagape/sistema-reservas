@@ -4,16 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controlador {
 
-    private static String RUTA_SALA = "src/Archivos/salas.txt";
-    private static String RUTA_RESERVA = "src/Archivos/reservas.txt";
+    private static String rutaLogs = "src/Archivos/logs.txt";
+    private static String rutaReserva = "src/Archivos/reservas.txt";
 
-    private static File archivoSala = new File(RUTA_SALA);
-    private static File archivoReserva = new File(RUTA_RESERVA);
+    private static File archivoReserva = new File(rutaReserva);
+    private static File logs = new File(rutaLogs);
 
     public static File getArchivoReserva() {
         return archivoReserva;
@@ -25,8 +27,10 @@ public class Controlador {
             writer.write(datosReserva + "\n");
             writer.close();
 
+            registrarLog("Reserva guardada: " + datosReserva);
         } catch (IOException e) {
             System.out.println("Error al guardar la reserva: " + e.getMessage());
+            registrarLog("Error al guardar la reserva: " + e.getMessage());
         }
     }
 
@@ -41,9 +45,10 @@ public class Controlador {
             }
 
             reader.close();
-
+            registrarLog("Se han revisado las reservas actuales.");
         } catch (FileNotFoundException e) {
             System.out.println("El archivo de reservas no existe: " + e.getMessage());
+            registrarLog("Error al leer las reservas: " + e.getMessage());
         }
     }
 
@@ -57,8 +62,10 @@ public class Controlador {
                 todasLasLineas.add(reader.nextLine());
             }
             reader.close();
+            registrarLog("Se ha eliminado la reserva número: " + numeroLinea);
         } catch (FileNotFoundException e) {
             System.out.println("El archivo de reservas no existe todavía.");
+            registrarLog("Error al eliminar la reserva: " + e.getMessage());
             return false;
         }
 
@@ -80,6 +87,7 @@ public class Controlador {
 
             } catch (IOException e) {
                 System.out.println("Error al sobrescribir el archivo: " + e.getMessage());
+                registrarLog("Error al eliminar la reserva: " + e.getMessage());
                 return false;
             }
 
@@ -99,5 +107,22 @@ public class Controlador {
         } catch (FileNotFoundException e) {
         }
         return lineas;
+    }
+
+    public static void registrarLog(String accion) {
+        LocalDateTime ahora = LocalDateTime.now();
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String fechaFormateada = ahora.format(formato);
+
+        String mensajeLog = "[" + fechaFormateada + "] " + accion;
+
+        try {
+            FileWriter writer = new FileWriter(logs, true);
+            writer.write(mensajeLog + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error al guardar el log: " + e.getMessage());
+        }
     }
 }

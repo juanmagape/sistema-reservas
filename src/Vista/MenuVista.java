@@ -10,9 +10,9 @@ public class MenuVista {
 
     public static void Menu() throws FileNotFoundException {
         while (true) {
-            System.out.println("================================================");
-            System.out.println("=Sistema de reservas ScapeRoom - Menú principal=");
-            System.out.println("================================================");
+            System.out.println("==================================================");
+            System.out.println("= Sistema de reservas ScapeRoom - Menú principal =");
+            System.out.println("==================================================");
 
             System.out.println("\n[1] - Crear reserva");
             System.out.println("[2] - Ver reservas");
@@ -26,7 +26,7 @@ public class MenuVista {
                     AnadirReserva();
                     break;
                 case 2:
-                    VerReserva(Controlador.obtenerLineasReserva());
+                    VerReserva();
                     break;
                 case 3:
                     EliminarReserva(Controlador.obtenerLineasReserva());
@@ -42,9 +42,9 @@ public class MenuVista {
     }
 
     public static void AnadirReserva() {
-        System.out.println("================================================");
-        System.out.println("=Sistema de reservas ScapeRoom - Añadir reserva=");
-        System.out.println("================================================");
+        System.out.println("==================================================");
+        System.out.println("= Sistema de reservas ScapeRoom - Añadir reserva =");
+        System.out.println("==================================================");
 
         System.out.println("\nIntroduce el ID de la sala");
         int idSala = sc.nextInt();
@@ -73,26 +73,18 @@ public class MenuVista {
         System.out.println("¡Reserva guardada con éxito!");
     }
 
-    public static void VerReserva(ArrayList<String> listaReservas) throws FileNotFoundException {
-        System.out.println("================================================");
-        System.out.println("===Sistema de reserva ScapeRoom - Ver reserva===");
-        System.out.println("================================================");
+    public static void VerReserva() throws FileNotFoundException {
+        System.out.println("==================================================");
+        System.out.println("=== Sistema de reserva ScapeRoom - Ver reserva ===");
+        System.out.println("==================================================");
 
-        int i = 1;
-        if (listaReservas.isEmpty()) {
-            System.out.println("No hay reservas registradas.");
-            return;
-        }
-        for (String linea : listaReservas) {
-            System.out.println("[" + i + "] - " + linea);
-            i++;
-        }
+        Controlador.leerReservas();
     }
 
     public static void EliminarReserva(ArrayList<String> listaReservas) throws FileNotFoundException {
-        System.out.println("=====================================================");
-        System.out.println("===Sistema de reserva ScapeRoom - Eliminar reserva===");
-        System.out.println("=====================================================");
+        System.out.println("=======================================================");
+        System.out.println("=== Sistema de reserva ScapeRoom - Eliminar reserva ===");
+        System.out.println("=======================================================");
 
         if (listaReservas.isEmpty()) {
             System.out.println("No hay reservas registradas.");

@@ -1,0 +1,5 @@
+[21/04/2026 10:15:31] El programa ha iniciado.
+[21/04/2026 10:15:37] Se han revisado las reservas actuales.
+[21/04/2026 10:16:02] Reserva guardada: Reserva: ID Reserva: 1, Fecha: 02/02/2000, Hora: 20:00, Cliente: juan, Teléfono: 123, Jugadores: 2, Sala: 2
+[21/04/2026 10:16:05] Se han revisado las reservas actuales.
+[21/04/2026 10:16:13] Se ha eliminado la reserva número: 1
