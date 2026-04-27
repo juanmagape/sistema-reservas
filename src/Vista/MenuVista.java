@@ -57,12 +57,26 @@ public class MenuVista {
 
         System.out.println("Introduce el número de jugadores:");
         int numJugadores = sc.nextInt();
+        String maxConfig = Controlador.obtenerConfiguracion("max_jugadores");
+        if (maxConfig != null && numJugadores > Integer.parseInt(maxConfig)) {
+            System.out.println("El máximo de jugadores permitido es " + maxConfig);
+            return;
+        }
 
         System.out.println("Introduce la fecha de la reserva (dd/mm/yyyy):");
         String fechaReserva = sc.next();
 
-        System.out.println("Introduce la hora de la reserva (hh:mm):");
+        System.out.println("Introduce la hora de la reserva (hh:mm, ej: 09:30):");
         String horaReserva = sc.next();
+        String hApertura = Controlador.obtenerConfiguracion("hora_apertura");
+        String hCierre = Controlador.obtenerConfiguracion("hora_cierre");
+
+        if (hApertura != null && hCierre != null) {
+            if (horaReserva.compareTo(hApertura) < 0 || horaReserva.compareTo(hCierre) > 0) {
+                System.out.println("El local está cerrado. Horario: " + hApertura + " a " + hCierre);
+                return;
+            }
+        }
 
         int idReserva = Controlador.obtenerLineasReserva().size() + 1;
 

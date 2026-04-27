@@ -13,9 +13,11 @@ public class Controlador {
 
     private static String rutaLogs = "src/Archivos/logs.txt";
     private static String rutaReserva = "src/Archivos/reservas.txt";
+    private static String rutaConfig = "src/Archivos/config.txt";
 
     private static File archivoReserva = new File(rutaReserva);
     private static File logs = new File(rutaLogs);
+    private static File archivoConfig = new File(rutaConfig);
 
     public static File getArchivoReserva() {
         return archivoReserva;
@@ -124,5 +126,41 @@ public class Controlador {
         } catch (IOException e) {
             System.out.println("Error al guardar el log: " + e.getMessage());
         }
+    }
+
+
+    public static void inicializarConfiguracion() {
+        try {
+            if (!archivoConfig.exists()) {
+                FileWriter writer = new FileWriter(archivoConfig);
+                writer.write("max_jugadores=6\n");
+                writer.write("hora_apertura=09:00\n");
+                writer.write("hora_cierre=22:00\n");
+                writer.close();
+                registrarLog("Archivo de configuración creado por defecto.");
+            }
+        } catch (IOException e) {
+            registrarLog("Error al crear configuración: " + e.getMessage());
+        }
+    }
+
+    public static String obtenerConfiguracion(String clave) {
+        try {
+            if (archivoConfig.exists()) {
+                Scanner reader = new Scanner(archivoConfig);
+                while (reader.hasNextLine()) {
+                    String linea = reader.nextLine();
+                    String[] partes = linea.split("=");
+                    if (partes.length == 2 && partes[0].trim().equals(clave)) {
+                        reader.close();
+                        return partes[1].trim();
+                    }
+                }
+                reader.close();
+            }
+        } catch (FileNotFoundException e) {
+            registrarLog("No se encuentra config.txt");
+        }
+        return null;
     }
 }

@@ -1,0 +1,3 @@
+max_jugadores=6
+hora_apertura=09:00
+hora_cierre=22:00
