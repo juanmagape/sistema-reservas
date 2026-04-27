@@ -12,3 +12,13 @@
 [26/04/2026 23:31:39] El programa ha iniciado.
 [26/04/2026 23:31:44] Se ha eliminado la reserva número: 1
 [26/04/2026 23:35:08] El programa ha iniciado.
+[27/04/2026 09:47:14] El programa ha iniciado.
+[27/04/2026 09:48:56] Reserva guardada: Reserva: ID Reserva: 1, Fecha: 28/08/6767, Hora: 09:46, Cliente: sad, Teléfono: 6767, Jugadores: 4, Sala: 67
+[27/04/2026 09:48:59] Se han revisado las reservas actuales.
+[27/04/2026 09:49:12] Se ha eliminado la reserva número: 1
+[27/04/2026 09:53:52] El programa ha iniciado.
+[27/04/2026 10:03:36] El programa ha iniciado.
+[27/04/2026 10:03:54] Configuración 'hora_apertura' actualizada a: 08:45
+[27/04/2026 10:04:38] Configuración 'hora_cierre' actualizada a: 22:00
+[27/04/2026 10:07:26] Reserva guardada: Reserva: ID Reserva: 1, Fecha: 26/08/2024, Hora: 09:30, Cliente: asd, Teléfono: 6767, Jugadores: 3, Sala: 67
+[27/04/2026 10:07:27] Se han revisado las reservas actuales.

@@ -17,7 +17,8 @@ public class MenuVista {
             System.out.println("\n[1] - Crear reserva");
             System.out.println("[2] - Ver reservas");
             System.out.println("[3] - Eliminar reserva");
-            System.out.println("[4] - Salir");
+            System.out.println("[4] - Configuración");
+            System.out.println("[5] - Salir");
 
             int opcion = sc.nextInt();
 
@@ -32,12 +33,53 @@ public class MenuVista {
                     EliminarReserva(Controlador.obtenerLineasReserva());
                     break;
                 case 4:
+                    Configuracion();
+                    break;
+                case 5:
                     System.out.println("Saliendo del programa...");
                     System.exit(0);
                     break;
                 default:
                     System.out.println("Opción no válida. Por favor, selecciona una opción del menú.");
             }
+        }
+    }
+
+    public static void Configuracion() {
+        System.out.println("==================================================");
+        System.out.println("= Sistema de reservas ScapeRoom - Configuración =");
+        System.out.println("==================================================");
+
+        System.out.println("\n[1] - Establecer hora de apertura");
+        System.out.println("[2] - Establecer hora de cierre");
+        System.out.println("[3] - Establecer máximo de jugadores");
+        System.out.println("[4] - Volver al menú principal");
+
+        int opcionConfig = sc.nextInt();
+
+        switch (opcionConfig) {
+            case 1:
+                System.out.println("Introduce la nueva hora de apertura (hh:mm, ej: 09:30):");
+                String nuevaHoraApertura = sc.next();
+                Controlador.editarConfiguracion("hora_apertura", nuevaHoraApertura);
+                System.out.println("Hora de apertura actualizada.");
+                break;
+            case 2:
+                System.out.println("Introduce la nueva hora de cierre (hh:mm, ej: 21:00):");
+                String nuevaHoraCierre = sc.next();
+                Controlador.editarConfiguracion("hora_cierre", nuevaHoraCierre);
+                System.out.println("Hora de cierre actualizada.");
+                break;
+            case 3:
+                System.out.println("Introduce el nuevo máximo de jugadores:");
+                String nuevoMaxJugadores = sc.next();
+                Controlador.editarConfiguracion("max_jugadores", nuevoMaxJugadores);
+                System.out.println("Máximo de jugadores actualizado.");
+                break;
+            case 4:
+                return;
+            default:
+                System.out.println("Opción no válida. Volviendo al menú principal.");
         }
     }
 
@@ -55,7 +97,7 @@ public class MenuVista {
         System.out.println("\nIntroduce el teléfono del cliente:");
         int telefonoCliente = sc.nextInt();
 
-        System.out.println("Introduce el número de jugadores:");
+        System.out.println("\nIntroduce el número de jugadores:");
         int numJugadores = sc.nextInt();
         String maxConfig = Controlador.obtenerConfiguracion("max_jugadores");
         if (maxConfig != null && numJugadores > Integer.parseInt(maxConfig)) {
@@ -63,10 +105,10 @@ public class MenuVista {
             return;
         }
 
-        System.out.println("Introduce la fecha de la reserva (dd/mm/yyyy):");
+        System.out.println("\nIntroduce la fecha de la reserva (dd/mm/yyyy):");
         String fechaReserva = sc.next();
 
-        System.out.println("Introduce la hora de la reserva (hh:mm, ej: 09:30):");
+        System.out.println("\nIntroduce la hora de la reserva (hh:mm, ej: 09:30):");
         String horaReserva = sc.next();
         String hApertura = Controlador.obtenerConfiguracion("hora_apertura");
         String hCierre = Controlador.obtenerConfiguracion("hora_cierre");
@@ -84,7 +126,7 @@ public class MenuVista {
 
         Controlador.guardarReserva(nuevaReserva.toString());
 
-        System.out.println("¡Reserva guardada con éxito!");
+        System.out.println("Reserva guardada con éxito!");
     }
 
     public static void VerReserva() throws FileNotFoundException {

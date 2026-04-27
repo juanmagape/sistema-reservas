@@ -163,4 +163,32 @@ public class Controlador {
         }
         return null;
     }
+
+    public static void editarConfiguracion(String clave, String nuevoValor) {
+        ArrayList<String> lineas = new ArrayList<>();
+        try {
+            if (archivoConfig.exists()) {
+                Scanner reader = new Scanner(archivoConfig);
+                while (reader.hasNextLine()) {
+                    String linea = reader.nextLine();
+                    String[] partes = linea.split("=");
+                    if (partes.length == 2 && partes[0].trim().equals(clave)) {
+                        lineas.add(clave + "=" + nuevoValor);
+                    } else {
+                        lineas.add(linea);
+                    }
+                }
+                reader.close();
+
+                FileWriter writer = new FileWriter(archivoConfig, false);
+                for (String linea : lineas) {
+                    writer.write(linea + "\n");
+                }
+                writer.close();
+                registrarLog("Configuración '" + clave + "' actualizada a: " + nuevoValor);
+            }
+        } catch (IOException e) {
+            registrarLog("Error al editar configuración: " + e.getMessage());
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package Modelo;
 
-public class Reserva extends Sala {
+public class Reserva {
+    private int idSala;
     private int idReserva;
     private String fechaReserva;
     private String horaReserva;
@@ -9,13 +10,19 @@ public class Reserva extends Sala {
     private int numJugadores;
 
     public Reserva(int idSala, int idReserva, String fechaReserva, String horaReserva, String nombreCliente, int telefonoCliente, int numJugadores) {
-        super(idSala);
+        this.idSala = idSala;
         this.idReserva = idReserva;
         this.fechaReserva = fechaReserva;
         this.horaReserva = horaReserva;
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;
         this.numJugadores = numJugadores;
+    }
+
+    public int getIdSala() {return idSala;}
+
+    public int setIdSala(int idSala) {
+        return this.idSala = idSala;
     }
 
     public int getIdReserva() {

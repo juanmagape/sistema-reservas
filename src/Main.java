@@ -4,12 +4,8 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-
-        Controlador.inicializarConfiguracion();
-
         Controlador.registrarLog("El programa ha iniciado.");
-
+        Controlador.inicializarConfiguracion();
         Vista.MenuVista.Menu();
-
     }
 }
